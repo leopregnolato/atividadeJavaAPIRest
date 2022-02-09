@@ -12,20 +12,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // TODO Auto-generated method stub
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {        
         super.configure(auth);
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        // TODO Auto-generated method stub
+    public void configure(WebSecurity web) throws Exception {        
         super.configure(web);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().anyRequest().permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll();
     }
     
 }
